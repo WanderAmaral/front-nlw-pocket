@@ -5,14 +5,30 @@ import { Progress, ProgressIndicator } from './ui/progress-bar'
 import { Separator } from './ui/separator'
 import { InOrbitIcon } from './in-orbit-icon'
 import { OutlineButton } from './ui/outline-button'
+import { useQuery } from '@tanstack/react-query'
+import { getSummary } from '../http/get-summary'
+import dayjs from 'dayjs'
+import ptBR from 'dayjs/locale/pt-BR'
+
+dayjs.locale(ptBR)
 
 export function Summary() {
+
+  const { data } = useQuery({
+    queryKey: ['summary'],
+    queryFn: getSummary,
+    staleTime: 1000 * 60
+  })
+
+  const firstDayOfWeek = dayjs().startOf('week').format('D MMM')
+  const lastDayOfWeek = dayjs().endOf('week').format('D MMM')
+
   return (
     <div className="py-10 max-w-[480px] px-5 mx-auto flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <InOrbitIcon />
-          <span className="text-lg font-semibold capitalize">5 a 10 de Agosto</span>
+          <span className="text-lg font-semibold capitalize">{firstDayOfWeek} - {lastDayOfWeek}</span>
         </div>
 
         <DialogTrigger asChild>
