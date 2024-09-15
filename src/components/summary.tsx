@@ -4,7 +4,6 @@ import { DialogTrigger } from './ui/dialog'
 import { Progress, ProgressIndicator } from './ui/progress-bar'
 import { Separator } from './ui/separator'
 import { InOrbitIcon } from './in-orbit-icon'
-import { OutlineButton } from './ui/outline-button'
 import { useQuery } from '@tanstack/react-query'
 import { getSummary } from '../http/get-summary'
 import dayjs from 'dayjs'
@@ -67,7 +66,7 @@ export function Summary() {
 
       <div className="flex flex-col gap-6">
         <h2 className="text-xl font-medium">Sua semana</h2>
-        {Object.entries(data.goalsPerDay).map(([date, goals]) => {
+        {data.goalsPerDay && Object.entries(data.goalsPerDay).map(([date, goals]) => {
           const weekDay = dayjs(date).format('dddd')
           const formattedDate = dayjs(date).format('D[ de ]MMMM')
 
