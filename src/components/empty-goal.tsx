@@ -3,7 +3,6 @@ import letsStart from '../assets/lets-start-illustration.svg'
 import { Plus } from 'lucide-react'
 import { Button } from './ui/button'
 import { DialogTrigger } from './ui/dialog'
-
 export function EmptyGoal() {
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-8">
